@@ -1,0 +1,40 @@
+@devia_be_HostAddress = http://localhost:5162
+@token = paste-jwt-here
+
+### Login admin
+POST {{devia_be_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@devia.app",
+  "password": "Admin123!"
+}
+
+### Register user
+POST {{devia_be_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Nuevo Usuario",
+  "email": "nuevo@empresa.com",
+  "password": "Demo123!",
+  "location": "Monterrey, MX",
+  "plan": "Starter"
+}
+
+### Current session user
+GET {{devia_be_HostAddress}}/api/auth/me
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### My dashboard
+GET {{devia_be_HostAddress}}/api/dashboard/me
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Admin overview
+GET {{devia_be_HostAddress}}/api/dashboard/admin/overview
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###

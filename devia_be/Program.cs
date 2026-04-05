@@ -40,7 +40,8 @@ builder.Services.AddCors(options =>
                 "http://localhost:4200",
                 "https://localhost:4200",
                 "http://127.0.0.1:4200",
-                "https://127.0.0.1:4200")
+                "https://127.0.0.1:4200",
+                "https://devia.arechsolutions.com")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -118,11 +119,8 @@ await using (var scope = app.Services.CreateAsyncScope())
     await SeedData.InitializeAsync(dbContext, passwordHasher);
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseCors("frontend");
